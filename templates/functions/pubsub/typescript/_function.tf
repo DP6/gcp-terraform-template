@@ -34,11 +34,11 @@ resource "null_resource" "typescript" {
 data "archive_file" "zip" {
   type        = "zip"
   source_dir  = "${local.root_dir}/src/functions/${local.function_name}/dist"
-  output_path = "${local.root_dir}/assets/function-${local.function_name}-${local.timestamp}.zip"
+  output_path = "${local.root_dir}/assets/function-${local.function_name}.zip"
 }
 
 resource "google_storage_bucket_object" "source" {
-  name   = "functions-${local.function_name}-source.zip#${data.archive_file.zip.output_md5}"
+  name   = "functions-${local.function_name}-source.zip"
   bucket = var.artifact_bucket
   source = data.archive_file.zip.output_path
 }
