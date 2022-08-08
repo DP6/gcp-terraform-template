@@ -1,4 +1,21 @@
 
+# What is Terraform and where do you use it
+
+Terraform is infraestructure as code, deploying from this repository to the cloud with it's configurations on `.tf` files.
+
+You can use this template for any Google Cloud Platform project, especially when talking about Cloud Functions. With git we keep track of changes made to the Cloud Functions codes and can even rollback if something went wrong.
+
+## What you will need
+
+- Basic git knowledge
+- GCP project permissions
+  - Cloud Functions
+  - Cloud Storage
+  - Source Repositories
+  - Cloud Build 
+
+You can host the repository on GitHub or GitLab then link with Source Repositories or create directly on your GCP project with Source Repositories.
+
 # Setup
 
 Change the variables on `environments/main/terraform.tfvars` and `environments/main/backend.tf` to match your project.
