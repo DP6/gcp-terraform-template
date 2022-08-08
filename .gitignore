@@ -1,0 +1,6 @@
+assets/
+.terraform/
+.terraform.lock.hcl
+node_modules/
+package-lock.json
+dist/

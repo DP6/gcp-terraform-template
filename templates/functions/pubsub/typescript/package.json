@@ -1,0 +1,16 @@
+{
+  "name": "node-template",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@google-cloud/functions-framework": "^3.1.2",
+    "@google-cloud/pubsub": "^3.1.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "move": "cp -f package.json dist"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
+}

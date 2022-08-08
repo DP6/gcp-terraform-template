@@ -1,0 +1,15 @@
+{
+  "name": "node-template",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "scripts": {
+    "build": "tsc",
+    "move": "cp -f package.json dist"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
+}
