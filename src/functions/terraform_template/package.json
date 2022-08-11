@@ -7,7 +7,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "move": "cp -f package.json dist"
+    "run": "npm run build && node dist/index",
+    "move": "cp -f *.json dist"
   },
   "devDependencies": {
     "typescript": "^4.7.4"

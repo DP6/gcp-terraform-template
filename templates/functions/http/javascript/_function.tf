@@ -8,16 +8,16 @@ locals {
   function_name = basename(path.module)
 
   # google_cloudfunctions_function config
-  description         = "Node function template"
-  runtime             = "nodejs16" # https://cloud.google.com/functions/docs/concepts/execution-environment#runtimes
-  entry_point         = "main"     # CF function entry name
-  timeout             = 540
-  available_memory_mb = "128"
+  description = "Node function template"
+  runtime     = "nodejs16" # https://cloud.google.com/functions/docs/concepts/execution-environment#runtimes
+  entry_point = "main"     # CF function entry name
+  timeout     = 540
 }
 
 data "archive_file" "zip" {
   type        = "zip"
   source_dir  = "${local.root_dir}/src/functions/${local.function_name}"
+  excludes    = ["node_modules", "package-lock.json"]
   output_path = "${local.root_dir}/assets/function-${local.function_name}.zip"
 }
 
@@ -35,7 +35,7 @@ resource "google_cloudfunctions_function" "function" {
   runtime     = local.runtime
   timeout     = local.timeout
 
-  available_memory_mb   = local.available_memory_mb
+  available_memory_mb   = "128"
   source_archive_bucket = var.artifact_bucket
   source_archive_object = google_storage_bucket_object.source.name
   entry_point           = local.entry_point

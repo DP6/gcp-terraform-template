@@ -15,21 +15,6 @@ locals {
   available_memory_mb = "128"
 }
 
-resource "null_resource" "typescript" {
-  provisioner "local-exec" {
-    working_dir = path.module
-    command     = "npm install typescript --save-dev"
-  }
-  provisioner "local-exec" {
-    working_dir = path.module
-    command     = "npm run build"
-  }
-  provisioner "local-exec" {
-    working_dir = path.module
-    command     = "npm run move"
-  }
-}
-
 data "archive_file" "zip" {
   type        = "zip"
   source_dir  = "${local.root_dir}/src/functions/${local.function_name}/dist"
