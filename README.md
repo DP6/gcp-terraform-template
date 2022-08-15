@@ -36,7 +36,7 @@ The `cloudbuild.yaml` configuration file will handle the build and deploy.
 
 As the only required field is `topic_name` for PubSub Functions, if you have an empty json it'll be applied the default values:
 
-```json
+```jsonc
 {
   "topic_name": "daily_at_5",     /* Required for PubSub Functions, not necessary for http functions */
   // "is_typescript": false,      /* Optional */
