@@ -1,0 +1,10 @@
+{
+  "topic_name": "daily_at_5",
+  "is_typescript": false,
+  "description": "Node function template",
+  "entry_point": "main",
+  "runtime": "nodejs16",
+  "timeout": 540,
+  "available_memory_mb": 128,
+  "environment_variables": {}
+}

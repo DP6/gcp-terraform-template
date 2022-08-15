@@ -1,8 +1,6 @@
 
 variable "project" {}
-
 variable "provider_region" {}
-
 variable "artifact_bucket" {}
 
 provider "google" {
@@ -11,8 +9,8 @@ provider "google" {
 }
 
 module "cloudfunction" {
-  project = var.project
-  source  = "../../src/functions"
+  source = "../../src/functions"
 
+  project         = var.project
   artifact_bucket = var.artifact_bucket
 }

@@ -1,0 +1,9 @@
+{
+  "is_typescript": true,
+  "description": "Python function template",
+  "entry_point": "run",
+  "runtime": "python38",
+  "timeout": 540,
+  "available_memory_mb": 128,
+  "environment_variables": {}
+}

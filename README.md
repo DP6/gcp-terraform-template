@@ -20,30 +20,36 @@ You can host the repository on GitHub or GitLab then link with Source Repositori
 
 Change the variables on `environments/main/terraform.tfvars` and `environments/main/backend.tf` to match your project.
 
-> To configure the backend, create a bucket with the same name as `artifact_bucket` on the Cloud Storage of your project.
+> Obs.: Apply the same variables on `environments/pre_main/terraform.tfvars`
 
 ## Setup the Cloud Build
 
 After configuring the project on **Google Source Repositories**, create a trigger for every push on the repository.
 
-The `cloudbuild.yaml` configuration file will handle the deploy. 
+The `cloudbuild.yaml` configuration file will handle the build and deploy. 
 
 # Create a Cloud Function
 
-1. Copy one folder from `templates/http` for http trigger functions or `templates/pubsub` for pubsub trigger functions into `src/functions`
+1. Copy one folder from `templates/functions/http` for http trigger functions or `templates/functions/pubsub` for pubsub trigger functions into `src/functions`
 2. Rename the folder you copied to the name of your function
-3. Change the variables inside `local` on `yourFunction/_function.tf` file
-4. Add the module of your function inside `src/functions/functions_modules.tf`:
+3. Edit `{http|pubsub}_config.json` to fit your Cloud Function
 
-```tf
-module "yourFunction_function" {
+As the only required field is `topic_name` for PubSub Functions, if you have an empty json it'll be applied the default values:
 
-  source = "./yourFunction"
-
-  project         = var.project
-  artifact_bucket = var.artifact_bucket
+```json
+{
+  "topic_name": "daily_at_5",     /* Required for PubSub Functions, not necessary for http functions */
+  // "is_typescript": false,      /* Optional */
+  // "description": "",           /* Optional */
+  // "entry_point": "main",       /* Optional */
+  // "runtime": "nodejs16",       /* Optional */
+  // "timeout": 540,              /* Optional */
+  // "available_memory_mb": 128,  /* Optional */
+  // "environment_variables": {}  /* Optional */
 }
 ```
+
+> Warning: the JSON file can't have comments, so remove them before pushing to the repository
 
 # Authenticating
 
@@ -63,15 +69,17 @@ See https://cloud.google.com/sdk/docs/install for installing gcloud cli.
 
 # Terraform
 
-After doing any changes on the terraform files, go to your environment and make sure you run:
+To apply the changes locally:
 
 ```sh
-$ cd environments/main
-
+# The deploy of pre_main is only necessary on the first time
+$ cd environments/pre_main
 $ terraform init
-$ terraform plan
+$ terraform apply -auto-approve
+
+$ cd ../main
+$ terraform init
+$ terraform apply -auto-approve
 ```
 
-And see if there are any errors.
-
-You can run `terraform apply` to deploy your code directly from your pc. **Altough, we recommend pushing your changes to the repository to run the CI on Cloud Build.**
+> **Altough, we recommend pushing your changes to the repository to run the CI on Cloud Build.**
