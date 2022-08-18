@@ -29,7 +29,7 @@ module "google_cloudfunctions_pubsub" {
   description         = try(each.value.description, "")
   runtime             = try(each.value.runtime, "nodejs16") # https://cloud.google.com/functions/docs/concepts/execution-environment#runtimes
   entry_point         = try(each.value.entry_point, "main")
-  timeout             = try(each.value.timeout, 540)
+  timeout             = try(each.value.timeout, 60)
   available_memory_mb = try(each.value.available_memory_mb, 128)
 
   environment_variables = try(each.value.environment_variables, {})
@@ -49,7 +49,7 @@ module "google_cloudfunctions_http" {
   description         = try(each.value.description, "")
   runtime             = try(each.value.runtime, "nodejs16") # https://cloud.google.com/functions/docs/concepts/execution-environment#runtimes
   entry_point         = try(each.value.entry_point, "main")
-  timeout             = try(each.value.timeout, 540)
+  timeout             = try(each.value.timeout, 60)
   available_memory_mb = try(each.value.available_memory_mb, 128)
 
   environment_variables = try(each.value.environment_variables, {})
