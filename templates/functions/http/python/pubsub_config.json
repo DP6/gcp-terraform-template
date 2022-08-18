@@ -1,5 +1,4 @@
 {
-  "is_typescript": false,
   "description": "Python function template",
   "entry_point": "run",
   "runtime": "python38",
