@@ -43,7 +43,7 @@ As the only required field is `topic_name` for PubSub Functions, if you have an 
   // "description": "",           /* Optional */
   // "entry_point": "main",       /* Optional */
   // "runtime": "nodejs16",       /* Optional */
-  // "timeout": 540,              /* Optional */
+  // "timeout": 60,               /* Optional */
   // "available_memory_mb": 128,  /* Optional */
   // "environment_variables": {}  /* Optional */
 }
