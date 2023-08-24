@@ -13,4 +13,5 @@ module "cloudfunction" {
 
   project         = var.project
   artifact_bucket = var.artifact_bucket
+  location        = var.provider_region
 }
