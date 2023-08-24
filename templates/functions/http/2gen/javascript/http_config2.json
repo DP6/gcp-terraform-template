@@ -1,0 +1,10 @@
+{
+  "description": "",
+  "entry_point": "main",
+  "runtime": "nodejs16",
+  "timeout": 60,
+  "available_memory": "256M",
+  "max_instances": 3,
+  "max_instance_request_concurrency": 3,
+  "environment_variables": {}
+}
