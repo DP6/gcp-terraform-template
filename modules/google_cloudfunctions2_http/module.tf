@@ -10,6 +10,7 @@ variable "entry_point" {}
 variable "timeout" {}
 variable "available_memory" {}
 variable "max_instances" {}
+variable "max_instance_request_concurrency" {}
 
 variable "environment_variables" {}
 
@@ -50,9 +51,10 @@ resource "google_cloudfunctions2_function" "default" {
   }
 
   service_config {
-    max_instance_count = var.max_instances
-    available_memory   = var.available_memory
-    timeout_seconds    = var.timeout
+    max_instance_count               = var.max_instances
+    max_instance_request_concurrency = var.max_instance_request_concurrency
+    available_memory                 = var.available_memory
+    timeout_seconds                  = var.timeout
   }
 }
 

@@ -72,13 +72,14 @@ module "google_cloudfunctions2_http" {
   location        = var.location
   artifact_bucket = var.artifact_bucket
 
-  function_name    = each.key
-  description      = try(each.value.description, "")
-  runtime          = try(each.value.runtime, "nodejs16") # https://cloud.google.com/functions/docs/concepts/execution-environment#runtimes
-  entry_point      = try(each.value.entry_point, "main")
-  timeout          = try(each.value.timeout, 60)
-  available_memory = try(each.value.available_memory, 128)
-  max_instances    = try(each.value.max_instances, 1)
+  function_name                    = each.key
+  description                      = try(each.value.description, "")
+  runtime                          = try(each.value.runtime, "nodejs16") # https://cloud.google.com/functions/docs/concepts/execution-environment#runtimes
+  entry_point                      = try(each.value.entry_point, "main")
+  timeout                          = try(each.value.timeout, 60)
+  available_memory                 = try(each.value.available_memory, 128)
+  max_instances                    = try(each.value.max_instances, 1)
+  max_instance_request_concurrency = try(each.value.max_instance_request_concurrency, 1)
 
   environment_variables = try(each.value.environment_variables, {})
 
